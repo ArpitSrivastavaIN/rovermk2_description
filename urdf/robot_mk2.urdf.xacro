@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="robot_mk2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:include filename="$(find rovermk2_description)/urdf/B2_mark_02.urdf"/>
+
+  <!-- Depth Camera Link -->
+    <!-- <link name="depth_camera_link">
+    <visual>
+        <geometry>
+        <box size="0.025 0.09 0.025"/>
+        </geometry>
+        <material name="black"/>
+    </visual>
+    <collision>
+        <geometry>
+        <box size="0.025 0.09 0.025"/>
+        </geometry>
+    </collision>
+    <inertial>
+        <mass value="0.1"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    </link> -->
+
+    <!-- Joint attaching camera to robot -->
+    <!-- <joint name="depth_camera_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="depth_camera_link"/>
+        <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    </joint> -->
+
+    <!-- Optical frame (required for ROS image conventions) -->
+    <!-- <link name="depth_camera_optical_frame"/>
+        <joint name="depth_camera_optical_joint" type="fixed">
+        <parent link="depth_camera_link"/>
+        <child link="depth_camera_optical_frame"/>
+        <origin xyz="0 0 0.5" rpy="-1.5708 0 -1.5708"/>
+    </joint>
+
+    <gazebo reference="depth_camera_link">
+    <sensor name="depth_camera" type="depth_camera">
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <camera>
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R_FLOAT32</format>
+        </image>
+        <clip>
+            <near>0.1</near>
+            <far>10.0</far>
+        </clip>
+        </camera>
+        <plugin
+        filename="libignition-gazebo6-sensors-system.so"
+        name="ignition::gazebo::systems::Sensors">
+        <render_engine>ogre2</render_engine>
+        </plugin>
+    </sensor>
+    </gazebo> -->
+
+    <ros2_control name="rovermk2" type="system">
+        <hardware>
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </hardware>
+
+        <!-- Drive Joints -->
+        <joint name="wheelFL_joint">
+            <command_interface name="velocity"/>
+            <state_interface name="velocity"/>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="wheelFR_joint">
+            <command_interface name="velocity"/>
+            <state_interface name="velocity"/>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="wheelBL_joint">
+            <command_interface name="velocity"/>
+            <state_interface name="velocity"/>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="wheelBR_joint">
+            <command_interface name="velocity"/>
+            <state_interface name="velocity"/>
+            <state_interface name="position"/>
+        </joint>
+
+        <!-- Steer Joints -->
+        <joint name="steerFL_joint">
+            <command_interface name="position"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="steerFR_joint">
+            <command_interface name="position"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="steerBL_joint">
+            <command_interface name="position"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        <joint name="steerBR_joint">
+            <command_interface name="position"/>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+
+    <!-- Ignition ros2_control plugin -->
+    <gazebo>
+    <plugin filename="libgz_ros2_control-system.so"
+            name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>$(find rovermk2_description)/config/controller.yaml</parameters>
+    </plugin>
+    </gazebo>
+
+</robot>

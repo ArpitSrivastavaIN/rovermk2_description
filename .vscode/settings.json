@@ -1,0 +1,21 @@
+{
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "python.autoComplete.extraPaths": [
+    "/home/arpit/husarion_ws/install/rocky_bot_navigation/lib/python3.10/site-packages",
+    "/home/arpit/husarion_ws/install/husarion_ugv_utils/local/lib/python3.10/dist-packages",
+    "/home/arpit/husarion_ws/install/husarion_ugv_msgs/local/lib/python3.10/dist-packages",
+    "/home/arpit/husarion_ws/install/btcpp_ros2_interfaces/local/lib/python3.10/dist-packages",
+    "/home/arpit/microros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages",
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "python.analysis.extraPaths": [
+    "/home/arpit/husarion_ws/install/rocky_bot_navigation/lib/python3.10/site-packages",
+    "/home/arpit/husarion_ws/install/husarion_ugv_utils/local/lib/python3.10/dist-packages",
+    "/home/arpit/husarion_ws/install/husarion_ugv_msgs/local/lib/python3.10/dist-packages",
+    "/home/arpit/husarion_ws/install/btcpp_ros2_interfaces/local/lib/python3.10/dist-packages",
+    "/home/arpit/microros_ws/install/micro_ros_msgs/local/lib/python3.10/dist-packages",
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ]
+}

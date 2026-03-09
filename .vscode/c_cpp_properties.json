@@ -1,0 +1,34 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/arpit/husarion_ws/install/mecanum_drive_controller/include/**",
+        "/home/arpit/husarion_ws/install/husarion_ugv_manager/include/**",
+        "/home/arpit/husarion_ws/install/husarion_ugv_lights/include/**",
+        "/home/arpit/husarion_ws/install/husarion_ugv_hardware_interfaces/include/**",
+        "/home/arpit/husarion_ws/install/husarion_ugv_diagnostics/include/**",
+        "/home/arpit/husarion_ws/install/husarion_ugv_battery/include/**",
+        "/home/arpit/husarion_ws/install/husarion_ugv_utils/include/**",
+        "/home/arpit/husarion_ws/install/husarion_ugv_msgs/include/**",
+        "/home/arpit/husarion_ws/install/husarion_ugv_gazebo/include/**",
+        "/home/arpit/husarion_ws/install/custom_bt_plugins/include/**",
+        "/home/arpit/husarion_ws/install/behaviortree_ros2/include/**",
+        "/home/arpit/husarion_ws/install/btcpp_ros2_interfaces/include/**",
+        "/home/arpit/microros_ws/install/micro_ros_agent/include/**",
+        "/home/arpit/microros_ws/install/micro_ros_msgs/include/**",
+        "/opt/ros/humble/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

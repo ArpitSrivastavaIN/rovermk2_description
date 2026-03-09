@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="rovermk2">
+
+    <!-- Base Link  -->
+
+    <link name="base_link">
+        <inertial>
+            <origin xyz="1.5107E-12 -0.010391 0.059342" rpy="0 0 0" />
+            <mass value="3.9684" />
+            <inertia ixx="0.068308" ixy="2.8787E-12" ixz="-8.8418E-14" iyy="0.03715"
+                iyz="0.00010785" izz="0.091228" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/base_link.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.96471 0.96471 0.95294 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Suspension Links -->
+
+    <link name="suspension_left">
+        <inertial>
+            <origin xyz="-0.085081 0.00042119 -0.0073347" rpy="0 0 0" />
+            <mass value="0.69456" />
+            <inertia ixx="0.00041573" ixy="-1.6646E-10" ixz="-3.1978E-09" iyy="0.0014467"
+                iyz="2.2187E-10" izz="0.0017365" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/suspension_1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.96471 0.96471 0.95294 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/suspension_1.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="suspension_right">
+        <inertial>
+            <origin xyz="0.0048172 -0.047933 -0.0073349" rpy="0 0 0" />
+            <mass value="0.69456" />
+            <inertia ixx="0.00041573" ixy="-2.7089E-10" ixz="3.1961E-09" iyy="0.0014467"
+                iyz="1.1348E-07" izz="0.0017365" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/suspension_2.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.96471 0.96471 0.95294 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/suspension_2.STL" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Suspension Joints Closed Loop thus with gazebo tags -->
+
+    <joint name="susleft_joint" type="revolute">
+        <origin xyz="-0.175 -0.1 0.043" rpy="0 0 -1.5708" />
+        <parent link="base_link" />
+        <child link="suspension_left" />
+        <axis xyz="0 1 0" />
+        <limit lower="-0.174" upper="0.174" effort="100" velocity="1" />
+    </joint>
+
+    <joint name="susright_joint" type="revolute">
+        <origin xyz="0.2225 -0.01 0.043" rpy="0 1.7626E-05 -1.5708" />
+        <parent link="base_link" />
+        <child link="suspension_right" />
+        <axis xyz="0 1 0" />
+        <limit lower="-0.174" upper="0.174" effort="100" velocity="1" />
+    </joint>
+
+
+    <!-- Steer Joints and Links -->
+
+    <!-- Steer Front Left Joint and Link -->
+
+    <link name="steerFL">
+        <inertial>
+            <origin xyz="-2.2204E-15 -0.032335 -0.05247" rpy="0 0 0" />
+            <mass value="0.1576" />
+            <inertia ixx="0.00057382" ixy="7.8164E-19" ixz="1.4837E-18" iyy="0.00051647"
+                iyz="-0.00013791" izz="0.00023455" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/Steer_FL_1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.96078 0.96078 0.96471 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/Steer_FL_1.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="steerFL_joint" type="continuous">
+        <origin xyz="-0.3975 0 -0.035" rpy="0 0 0" />
+        <parent link="suspension_left" />
+        <child link="steerFL" />
+        <axis xyz="0 0 1" />
+        <!-- <limit lower="0" upper="0" effort="0" velocity="0"/> -->
+    </joint>
+
+    <!-- Steer Front Right Joint and Link -->
+
+    <link name="steer_FR">
+        <inertial>
+            <origin xyz="0.3075 0.025165 -0.08747" rpy="0 0 0" />
+            <mass value="0.1576" />
+            <inertia ixx="0.00057382" ixy="-5.4704E-17" ixz="-1.3425E-16" iyy="0.00051647"
+                iyz="-0.00013791" izz="0.00023455" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/steer_FR.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.96078 0.96078 0.96471 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/steer_FR.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="steerFR_joint" type="continuous">
+        <origin xyz="0 0.01 0" rpy="0 0 3.1416" />
+        <parent link="suspension_right" />
+        <child link="steer_FR" />
+        <axis xyz="5.9526E-05 0 1" />
+        <!-- <limit lower="0" upper="0" effort="0" velocity="0"/> -->
+    </joint>
+
+
+    <!-- Steer Back Left Joint and Link -->
+
+    <link name="steer_BL">
+        <inertial>
+            <origin xyz="-2.7756E-15 -0.032335 -0.05247" rpy="0 0 0" />
+            <mass value="0.1576" />
+            <inertia ixx="0.00057382" ixy="-9.7292E-20" ixz="-4.0506E-19" iyy="0.00051647"
+                iyz="-0.00013791" izz="0.00023455" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/steer_BL.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.96078 0.96078 0.96471 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/steer_BL.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="steerBL_joint" type="continuous">
+        <origin xyz="0.2175 0 -0.035" rpy="0 0 0" />
+        <parent link="suspension_left" />
+        <child link="steer_BL" />
+        <axis xyz="0 0 1" />
+        <!-- <limit lower="0" upper="0" effort="0" velocity="0"/> -->
+    </joint>
+
+    <!-- Steer Back Right Joint and Link-->
+
+    <link name="steer_BR">
+        <inertial>
+            <origin xyz="-0.30751 0.021928 -0.087669" rpy="0 0 0" />
+            <mass value="0.1576" />
+            <inertia ixx="0.00057382" ixy="-5.2157E-17" ixz="-1.2839E-16" iyy="0.00051647"
+                iyz="-0.00013791" izz="0.00023455" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/steer_BR.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.96078 0.96078 0.96471 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/steer_BR.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="steerBR_joint" type="continuous">
+        <origin xyz="0 0.0067628 0.00019885" rpy="0 0 3.1416" />
+        <parent link="suspension_right" />
+        <child link="steer_BR" />
+        <axis xyz="5.9526E-05 0 1" />
+        <!-- <limit lower="0" upper="0" effort="0" velocity="0"/> -->
+    </joint>
+
+    <!-- Differential Joints and Links -->
+
+    <link name="differential">
+        <inertial>
+            <origin xyz="-1.1102E-16 0.0046881 0" rpy="0 0 0" />
+            <mass value="0.072511" />
+            <inertia ixx="4.5251E-06" ixy="1.9338E-20" ixz="5.9027E-19" iyy="0.00094731"
+                iyz="2.9892E-21" izz="0.00094443" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/diffrential.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.96471 0.96471 0.95294 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/diffrential.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="differential_joint" type="revolute">
+        <origin xyz="0 -0.172 0.15" rpy="0 -0.0009328 0" />
+        <parent link="base_link" />
+        <child link="differential" />
+        <axis xyz="0 -1 0" />
+        <limit lower="-0.174" upper="0.174" effort="100" velocity="1" />
+    </joint>
+    <link name="diff_left">
+        <inertial>
+            <origin xyz="-2.0403E-08 -0.017 -2.0403E-08" rpy="0 0 0" />
+            <mass value="0.013668" />
+            <inertia ixx="1.9282E-06" ixy="3.6228E-11" ixz="-1.5917E-12" iyy="4.9695E-07"
+                iyz="-3.6228E-11" izz="1.9282E-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/diff_1.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.62745 0.62745 0.62745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/diff_1.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="diff_left_joint" type="revolute">
+        <origin xyz="-0.17505 -0.0024 -0.053" rpy="-1.5717 0 -1.5708" />
+        <parent link="differential" />
+        <child link="diff_left" />
+        <axis xyz="0 0 1" />
+        <limit lower="-0.174" upper="0.174" effort="100" velocity="1" />
+    </joint>
+    <link name="diff_right">
+        <inertial>
+            <origin xyz="-2.2451E-08 -0.017 -2.0294E-08" rpy="0 0 0" />
+            <mass value="0.013668" />
+            <inertia ixx="1.9282E-06" ixy="3.5723E-11" ixz="-1.1021E-12" iyy="4.9695E-07"
+                iyz="-3.5961E-11" izz="1.9282E-06" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/diff_2.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.62745 0.62745 0.62745 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/diff_2.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="diff_right_joint" type="revolute">
+        <origin xyz="0.17319 -0.00078377 -0.053409" rpy="-1.6026 -0.074146 1.5732" />
+        <parent link="differential" />
+        <child link="diff_right" />
+        <axis xyz="-1.1525E-05 0.00012878 1" />
+        <limit lower="-0.174" upper="0.174" effort="100" velocity="1" />
+    </joint>
+
+    <!-- All Wheels Joints and Links -->
+
+    <link name="wheelFL">
+        <inertial>
+            <origin xyz="-1.2482E-05 1.1067E-05 -9.9464E-06" rpy="0 0 0" />
+            <mass value="0.57698" />
+            <inertia ixx="0.0021487" ixy="-1.7024E-08" ixz="-8.7398E-08" iyy="0.0038235"
+                iyz="8.3831E-09" izz="0.0021487" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/wheelFL.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.24706 0.24706 0.24706 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/wheelFL.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="wheelFL_joint" type="continuous">
+        <origin xyz="0 0.008 -0.127" rpy="0 -0.031506 3.1416" />
+        <parent link="steerFL" />
+        <child link="wheelFL" />
+        <axis xyz="0 -1 0" />
+        <!-- <limit lower="0" upper="0" effort="0" velocity="0"/> -->
+    </joint>
+
+    <link name="wheelBL">
+        <inertial>
+            <origin xyz="-1.4946E-05 8.1816E-06 -7.8177E-06" rpy="0 0 0" />
+            <mass value="0.57701" />
+            <inertia ixx="0.0021482" ixy="-3.9981E-08" ixz="-7.3417E-08" iyy="0.0038226"
+                iyz="-2.1036E-08" izz="0.0021482" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/wheelBL.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.24706 0.24706 0.24706 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/wheelBL.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="wheelBL_joint" type="continuous">
+        <origin xyz="0 0.008 -0.127" rpy="0 -0.19461 3.1416" />
+        <parent link="steer_BL" />
+        <child link="wheelBL" />
+        <axis xyz="0 -1 0" />
+        <!-- <limit lower="0" upper="0" effort="0" velocity="0"/> -->
+    </joint>
+    <link name="wheelFR">
+        <inertial>
+            <origin xyz="-1.5082E-05 8.1816E-06 -6.5794E-06" rpy="0 0 0" />
+            <mass value="0.57701" />
+            <inertia ixx="0.0021486" ixy="-4.1925E-08" ixz="-2.4022E-08" iyy="0.0038235"
+                iyz="-1.3635E-08" izz="0.0021489" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/wheelFR.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.24706 0.24706 0.24706 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/wheelFR.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="wheelFR_joint" type="continuous">
+        <origin xyz="0.3075 0.0555 -0.162" rpy="0 -0.48916 0" />
+        <parent link="steer_FR" />
+        <child link="wheelFR" />
+        <axis xyz="0 -1 0" />
+        <!-- <limit lower="0" upper="0" effort="0" velocity="0"/> -->
+    </joint>
+    <link name="wheelBR">
+        <inertial>
+            <origin xyz="-1.3322E-05 9.8794E-06 -8.7944E-06" rpy="0 0 0" />
+            <mass value="0.577" />
+            <inertia ixx="0.0021487" ixy="-1.7024E-08" ixz="-8.7398E-08" iyy="0.0038235"
+                iyz="8.3831E-09" izz="0.0021487" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/wheelBR.STL" />
+            </geometry>
+            <material name="">
+                <color rgba="0.24706 0.24706 0.24706 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://rovermk2_description/meshes/wheelBR.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="wheelBR_joint" type="continuous">
+        <origin xyz="-0.30751 0.052263 -0.1622" rpy="0 -0.069204 0" />
+        <parent link="steer_BR" />
+        <child link="wheelBR" />
+        <axis xyz="0 -1 0" />
+        <!-- <limit lower="0" upper="0" effort="0" velocity="0"/> -->
+    </joint>
+
+</robot>
