@@ -1,0 +1,7 @@
+point_cloud_xyz_node:
+  ros__parameters:
+    qos_overrides:
+      /cloud_filtered:
+        publisher:
+          reliability: reliable
+          durability: volatile   

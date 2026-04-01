@@ -135,7 +135,7 @@
 
     <link name="steer_FR">
         <inertial>
-            <origin xyz="0.3075 0.025165 -0.08747" rpy="0 0 0" />
+            <origin xyz="-0.3075 0.025165 -0.08747" rpy="0 0 0" />
             <mass value="0.1576" />
             <inertia ixx="0.00057382" ixy="-5.4704E-17" ixz="-1.3425E-16" iyy="0.00051647"
                 iyz="-0.00013791" izz="0.00023455" />
@@ -323,6 +323,7 @@
         <axis xyz="-1.1525E-05 0.00012878 1" />
         <limit lower="-0.174" upper="0.174" effort="100" velocity="1" />
     </joint>
+
 
     <!-- All Wheels Joints and Links -->
 

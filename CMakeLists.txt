@@ -14,4 +14,16 @@ install(
   RENAME cmd_vel_converter
 )
 
+install(PROGRAMS
+  rovermk2_description/steerdeg_pub.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME steerdeg_pub
+)
+
+install(PROGRAMS
+  rovermk2_description/controller.py
+  DESTINATION lib/${PROJECT_NAME}
+  RENAME controller
+)
+
 ament_package()
