@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot name="robot_mk2" xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:include filename="$(find rovermk2_description)/urdf/B2_mark_03_static.urdf" />
+    <xacro:include filename="$(find rovermk2_description)/urdf/rovermk2.urdf" />
     <xacro:include filename="$(find rovermk2_description)/urdf/B2_mark_sensors.urdf" />
 
     <ros2_control name="rovermk2" type="system">
