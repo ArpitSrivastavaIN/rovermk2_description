@@ -130,8 +130,7 @@ class ControllerNode(Node):
         self.drive_pub.publish(drive_msg)
         self.steer_pub.publish(steer_msg)
         self.get_logger().debug('Published drive and steer commands')
-
-            
+  
         self.drive_pub.publish(drive_msg)
         self.steer_pub.publish(steer_msg)
     

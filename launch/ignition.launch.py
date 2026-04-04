@@ -10,7 +10,7 @@ from launch.actions import TimerAction
 def generate_launch_description():
     pkg_path = get_package_share_directory('rovermk2_description')
     xacro_file = os.path.join(pkg_path, 'urdf', 'robot_mk2.urdf.xacro')
-    world_file = os.path.join(pkg_path, 'worlds', 'rover_map.world')
+    world_file = os.path.join(pkg_path, 'worlds', 'rover.world')
 
     robot_desc = xacro.process_file(xacro_file).toxml()
 
